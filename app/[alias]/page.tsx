@@ -1,11 +1,9 @@
-import clientPromise from '@/lib/mongodb';
 import { redirect, notFound } from 'next/navigation';
+import clientPromise from '@/lib/mongodb';
 
 export const dynamic = 'force-dynamic';
 
-interface AliasPageParams{ params: {alias: string;}; }
-
-export default async function Page({ params }: AliasPageParams) {
+export default async function Page({ params }: { params: { alias: string } }) {
   const client = await clientPromise;
   const db = client.db();
   const collection = db.collection('urls');
