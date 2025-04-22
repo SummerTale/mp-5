@@ -10,9 +10,9 @@ export default async function Page({ params }: { params: { alias: string } }) {
 
   const record = await collection.findOne({ alias: params.alias });
 
-  if (record) {
-    redirect(record.url);
-  } else {
+  if (!record) {
     notFound();
   }
+
+  redirect(record.url);
 }
