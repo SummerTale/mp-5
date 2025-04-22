@@ -1,7 +1,10 @@
 import clientPromise from '@/lib/mongodb';
-import { redirect } from 'next/navigation';
+import { redirect, notFound } from 'next/navigation';
 
-export default async function AliasPage({ params }: { params: { alias: string } }) {
+export const dynamic = 'force-dynamic';
+
+// @ts-expect-error Next.js will inject correct params type at runtime
+export default async function Page({ params }) {
   const client = await clientPromise;
   const db = client.db();
   const collection = db.collection('urls');
@@ -11,6 +14,6 @@ export default async function AliasPage({ params }: { params: { alias: string } 
   if (record) {
     redirect(record.url);
   } else {
-    return <p className="text-center text-red-500 mt-10">Alias not found</p>;
+    notFound();
   }
 }
