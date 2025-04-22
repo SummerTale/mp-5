@@ -1,0 +1,72 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6f8;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background-color: white;
+  width: 100%;
+  max-width: 450px;
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card h1 {
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.card p {
+  margin-bottom: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+input, button {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #0066ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+button:hover {
+  background-color: #0052cc;
+}
+
+.link-container {
+  margin-top: 10px;
+}
+
+.short-url {
+  color: #0066ff;
+  word-break: break-all;
+  display: block;
+  margin-bottom: 8px;
+  text-decoration: underline;
+}
+
+.copy-btn {
+  background-color: #eee;
+  color: #333;
+}
