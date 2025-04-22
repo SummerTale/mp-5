@@ -8,7 +8,7 @@ export default function UrlForm() {
   const [message, setMessage] = useState('');
   const [copied, setCopied] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage('');
     setCopied(false);
@@ -26,8 +26,12 @@ export default function UrlForm() {
       } else {
         setMessage(data.error || 'Something went wrong.');
       }
-    } catch (err: any) {
-      setMessage(err.message || 'Unexpected error.');
+    } catch (err) {
+      if (err instanceof Error){
+        setMessage(err.message);
+      } else{
+        setMessage('Unexpected error.');
+      }
     }
   };
 
