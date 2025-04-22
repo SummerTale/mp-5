@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 
 interface PageProps{ params: {alias: string;}; }
 
-export default async function AliasPage({ params }: PageProps) {
+export default async function Page({ params }: PageProps) {
   const client = await clientPromise;
   const db = client.db();
   const collection = db.collection('urls');
