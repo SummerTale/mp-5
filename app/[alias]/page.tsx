@@ -1,9 +1,22 @@
 import { redirect, notFound } from 'next/navigation';
 import clientPromise from '@/lib/mongodb';
+import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
 
-const AliasPage = async ({ params }: { params: { alias: string } }) => {
+type Props = {
+  params: {
+    alias: string;
+  };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  return {
+    title: `Redirecting...`,
+  };
+}
+
+export default async function Page({ params }: Props) {
   const client = await clientPromise;
   const db = client.db();
   const collection = db.collection('urls');
@@ -16,5 +29,3 @@ const AliasPage = async ({ params }: { params: { alias: string } }) => {
 
   redirect(record.url);
 }
-
-export default AliasPage;
