@@ -1,19 +1,17 @@
 import clientPromise from '@/lib/mongodb';
 import { redirect, notFound } from 'next/navigation';
+import { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
 
-export default async function AliasPage({
-  params,
-}: {
-  params: { alias: string };
-}) {
-  const alias = params.alias;
+type AliasPageProps={ params: {alias:string}; };
+
+export default async function AliasPage({ params }: AliasPageProps) {
   const client = await clientPromise;
   const db = client.db();
   const collection = db.collection('urls');
 
-  const record = await collection.findOne({ alias });
+  const record = await collection.findOne({ alias: params.alias });
 
   if (record) {
     redirect(record.url);
