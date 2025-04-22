@@ -16,3 +16,5 @@ const AliasPage = async ({ params }: { params: { alias: string } }) => {
 
   redirect(record.url);
 }
+
+export default AliasPage;
