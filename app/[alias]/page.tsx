@@ -3,9 +3,9 @@ import { redirect, notFound } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
 
-type AliasPageProps={ params: {alias:string}; };
+interface PageProps{ params: {alias: string;}; }
 
-export default async function AliasPage({ params }: AliasPageProps) {
+export default async function AliasPage({ params }: PageProps) {
   const client = await clientPromise;
   const db = client.db();
   const collection = db.collection('urls');
