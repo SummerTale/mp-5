@@ -8,7 +8,7 @@ export default function UrlForm() {
   const [message, setMessage] = useState('');
   const [copied, setCopied] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setMessage('');
     setCopied(false);

@@ -1,16 +1,13 @@
-import { MongoClient } from "mongodb";
+import {MongoClient} from "mongodb";
 
-const uri = process.env.MONGODB_URI!;
-const options = {};
+const uri = process.env.MONGODB_URI;
+const options={};
 
-let client;
-let clientPromise: Promise<MongoClient>;
-
-if (!process.env.MONGODB_URI) {
+if(!uri){
   throw new Error("Add MONGODB_URI to .env.local");
-}
 
-client = new MongoClient(uri, options);
-clientPromise = client.connect();
+}
+const client = new MongoClient(uri, options);
+const clientPromise: Promise<MongoClient> = client.connect();
 
 export default clientPromise;
