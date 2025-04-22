@@ -1,23 +1,16 @@
-import { redirect, notFound } from 'next/navigation';
 import clientPromise from '@/lib/mongodb';
+import { redirect } from 'next/navigation';
 
-export const dynamic = 'force-dynamic';
-
-export default async function Page({
-  params,
-}: {
-  params: { alias: string };
-}) {
+export default async function AliasPage({ params }: { params: { alias: string } }) {
   const client = await clientPromise;
   const db = client.db();
   const collection = db.collection('urls');
 
-  const result = await collection.findOne({ alias: params.alias });
+  const record = await collection.findOne({ alias: params.alias });
 
-  if (!result) {
-    notFound();
+  if (record) {
+    redirect(record.url);
+  } else {
+    return <p className="text-center text-red-500 mt-10">Alias not found</p>;
   }
-
-  redirect(result.url);
-  return null;
 }
